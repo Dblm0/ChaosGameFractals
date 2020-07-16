@@ -1,0 +1,45 @@
+﻿<Window x:Class="ChaosGameFractals.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ChaosGameFractals" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="mystyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Expander Grid.Row="1" ExpandDirection="Up">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text= "Vertices" Style="{StaticResource mystyle}"/>
+                <ComboBox x:Name="FractalsCB"  Grid.Column="1" SelectionChanged="FractalsCB_SelectionChanged" Margin="5"/>
+
+                <CheckBox Content="Unique Neighbours" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" Grid.Row="1" Grid.ColumnSpan="2"/>
+                      
+                <TextBlock Text="{Binding ElementName=Fraction, Path=Value, StringFormat=Fraction : {0:0.000}}" Grid.Row="2" Style="{StaticResource mystyle}"/>
+                <Slider x:Name="Fraction" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="1" ValueChanged="Fraction_ValueChanged" Margin="5"/>
+
+                <TextBlock Text="{Binding ElementName=PhiAngle, Path=Value, StringFormat=Angle : {0:0.000}}" Grid.Row="3" Style="{StaticResource mystyle}"/>
+                <Slider x:Name="PhiAngle" Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="360" ValueChanged="PhiAngle_ValueChanged"  Margin="5"/>
+            </Grid>
+        </Expander>
+        
+
+    </Grid>
+</Window>
